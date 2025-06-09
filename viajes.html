@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/estilos_usuarios.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <title>Mis viajes - DriveAR</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile-pic">
+          <img src="images/perfil_ejemplo.jpg" alt="Foto de perfil">
+        </div>
+        <div class="profile-email">vargas.matias734@gmail.com</div>
+        <hr class="sidebar-divider">
+        <div class="sidebar-menu">
+          <a href="perfil.html" class="sidebar-link"><span class="fa fa-user"></span> <span class="sidebar-text">Mi cuenta</span></a>
+          <hr class="sidebar-divider">
+          <a href="viajes.html" class="sidebar-link"><span class="fa fa-car"></span> <span class="sidebar-text">Mis viajes</span></a>
+          <hr class="sidebar-divider">
+          <a href="publicar.html" class="sidebar-link"><span class="fa fa-plus-square"></span> <span class="sidebar-text">Publicar vehículo</span></a>
+          <hr class="sidebar-divider">
+          <a href="#" class="sidebar-link"><span class="fa fa-sign-out"></span> <span class="sidebar-text">Cerrar sesión</span></a>
+        </div>
+    </div>
+    <header>
+        <a href="index.html">
+            <img src="images/Logo_DriveAr.png" alt="Logo DriveAr" class="logo">
+        </a>
+        <nav style="background-color: white; color: white;">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+              <li><a href="como-funciona.html">Cómo Funciona</a></li>
+              <li><a href="preguntas.html">Preguntas Frecuentes</a></li>
+              <li><a href="Contacto.html">Contacto</a></li>
+              <li><a href="perfil.html">Ser Anfitrión</a></li>
+              <li id="adminHeaderLink" style="display: none;"><a href="admin.html">Panel de Administración</a></li>
+           
+              <div class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <div class="menu-content">
+                    <a href="#" id="hamburgerAuthLink">Ingreso/Registro</a>
+                </div>
+              </div>
+            </ul>
+        </nav>
+  </header>  
+    <div class="main-content">
+        <div id="tabs-container">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('pendientes')">
+                    <span class="fa fa-clock-o"></span> 
+                    Pendientes
+                    <button class="info-icon-btn" onclick="event.stopPropagation(); showInfoModal('pendientes')"><span class="fa fa-info-circle"></span></button>
+                </button>
+                <button class="tab" onclick="showTab('aprobados')">
+                    <span class="fa fa-thumbs-o-up"></span> 
+                    Aprobados
+                    <button class="info-icon-btn" onclick="event.stopPropagation(); showInfoModal('aprobados')"><span class="fa fa-info-circle"></span></button>
+                </button>
+                <button class="tab" onclick="showTab('confirmados')">
+                    <span class="fa fa-flag-checkered"></span> 
+                    Confirmados
+                    <button class="info-icon-btn" onclick="event.stopPropagation(); showInfoModal('confirmados')"><span class="fa fa-info-circle"></span></button>
+                </button>
+                <button class="tab" onclick="showTab('archivo')">
+                    <span class="fa fa-folder-open"></span> 
+                    Archivo
+                    <button class="info-icon-btn" onclick="event.stopPropagation(); showInfoModal('archivo')"><span class="fa fa-info-circle"></span></button>
+                </button>
+            </div>
+            <div id="tab-content" class="tab-content">
+                <div id="pendientes" class="tab-pane active">
+                    <div class="tab-content-centered">
+                        <span class="fa fa-clock-o"></span>
+                        <h2>¡No tienes ninguna solicitud pendiente!</h2>
+                    </div>
+                </div>
+                <div id="aprobados" class="tab-pane" style="display:none;">
+                    <div class="tab-content-centered">
+                        <span class="fa fa-thumbs-o-up"></span>
+                        <h2>¡No tienes viajes aprobados!</h2>
+                    </div>
+                </div>
+                <div id="confirmados" class="tab-pane" style="display:none;">
+                    <div class="tab-content-centered">
+                        <span class="fa fa-flag-checkered"></span>
+                        <h2>¡No tienes viajes confirmados!</h2>
+                    </div>
+                </div>
+                <div id="archivo" class="tab-pane" style="display:none;">
+                    <div class="tab-content-centered">
+                        <span class="fa fa-folder-open"></span>
+                        <h2>¡No tienes viajes en el archivo!</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="info-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="hideInfoModal()">&times;</button>
+            <h3 id="modal-title"></h3>
+            <p id="modal-text"></p>
+        </div>
+    </div>
+
+    <script>
+        const modalContent = {
+            pendientes: {
+                title: 'Pendientes',
+                text: 'El propietario ha recibido tu solicitud y deberá aceptarla para que puedas continuar con la reserva. Puedes intentar contactarlo por chat para contarle los motivos de tu viaje y así mejorar las posibilidades'
+            },
+            aprobados: {
+                title: 'Aprobados',
+                text: 'Aquí verás los viajes que han sido aprobados por el propietario.'
+            },
+            confirmados: {
+                title: 'Confirmados',
+                text: 'Aquí verás los viajes cuya reserva ha sido confirmada.'
+            },
+            archivo: {
+                title: 'Archivo',
+                text: 'Aquí verás el historial de tus viajes.'
+            }
+        };
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.style.display = 'none');
+            document.getElementById(tabId).style.display = 'block';
+            const tabButtons = document.querySelectorAll('.tabs .tab');
+            const idx = ['pendientes','aprobados','confirmados','archivo'].indexOf(tabId);
+            if(idx !== -1) {
+                tabButtons[idx].classList.add('active');
+            }
+        }
+
+        function showInfoModal(tabId) {
+            const modal = document.getElementById('info-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalText = document.getElementById('modal-text');
+            
+            modalTitle.textContent = modalContent[tabId].title;
+            modalText.textContent = modalContent[tabId].text;
+            modal.style.display = 'flex'; // Usar flex para centrar contenido
+        }
+
+        function hideInfoModal() {
+            const modal = document.getElementById('info-modal');
+            modal.style.display = 'none';
+        }
+
+        // Opcional: cerrar modal haciendo clic fuera del contenido
+        window.onclick = function(event) {
+            const modal = document.getElementById('info-modal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

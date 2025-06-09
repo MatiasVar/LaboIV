@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveAr</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="images/Logo_DriveAr.png" alt="Logo DriveAr" class="logo">
+        </a>
+        <nav style="background-color: white; color: white;">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="como-funciona.html">Cómo Funciona</a></li>
+                <li><a href="preguntas.html">Preguntas Frecuentes</a></li>
+                <li><a href="Contacto.html">Contacto</a></li>
+                <li><a href="publicar.html">Ser Anfitrión</a></li>
+                <li id="adminHeaderLink" style="display: none;"><a href="admin.html">Panel de Administración</a></li>
+               
+                <div class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <div class="menu-content">
+                        <a href="#" id="hamburgerAuthLink">Ingreso/Registro</a>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero-text">
+        <h1>Alquiler de autos al mejor precio</h1>
+        <h2>Reserva autos rápido, fácil y sin papeleos</h2>
+    </div>
+
+    <main>
+        <div class="filters-container">
+            <div class="filter">
+                <h3><img src="images/ubicacion-naranja.gif" alt="Destino" class="icono-fecha">Elige tu zona</h3>
+                <select id="ubicacion-select">
+                    <option value="">Seleccionar</option>
+                    <option value="buenos-aires">Buenos Aires</option>
+                    <option value="caba">CABA</option>
+                </select>
+            </div>
+            <div class="filter">
+                <h3><img src="images/Icon_Desde.6a589533.gif" alt="Desde" class="icono-fecha">Desde cuándo</h3>
+                <input type="date">
+                <input type="time">
+            </div>
+            <div class="filter">
+                <h3><img src="images/Icon_Hasta.e6230fb2.gif" alt="Hasta" class="icono-fecha">Hasta cuándo</h3>
+                <input type="date">
+                <input type="time">
+            </div>
+            <div class="buscar-btn-container">
+                <button class="buscar-btn" onclick="filtrarPorUbicacion()">Buscar</button>
+            </div>
+        </div>
+
+        <div class="destinations">
+            <div class="destination-card">
+                <img src="images/la-avenida-maipu-en-los-tramos-de-vicente-lopez-DBTJJ37ZAZAJFILUUUTDOEQPLQ.webp" alt="Buenos Aires">
+                <p>Recorre Buenos Aires</p>
+            </div>
+            <div class="destination-card">
+                <img src="images/CABA obelisco-y-avenida-de-julio-con-el-coche-del-tráfico-en-buenos-aires-82598776.webp" alt="CABA">
+                <p>Visita CABA</p>
+            </div>
+        </div>
+
+        <h2 class="prioridad-titulo">Tu <span style="color: #ff7910;">seguridad y confort</span>, </h2>
+        <h2 class="prioridad-titulo">nuestra Prioridad</h2>
+
+        <div class="features">
+            <div class="feature">
+                <img src="images/verificacion.gif" alt="Verificación">
+                <h2>Vehículos verificados</h2>
+                <p>Nuestro equipo de soporte verifica el estado de los vehículos, para garantizar un viaje sin contratiempos</p>
+            </div>
+            <div class="feature">
+                <img src="images/seguro.gif" alt="Seguro">
+                <h2>Seguro completo con Franquicia</h2>
+                <p>Todos los vehículos son asegurados con la mejor cobertura, para que tu única preocupación sea que tantos lugares puedas visitar</p>
+            </div>
+            <div class="feature">
+                <img src="images/asistencia.gif" alt="Asistencia">
+                <h2>Asistencia las 24 hrs</h2>
+                <p>¿Surgió un contratiempo? Puede pasar, por eso siempre podrás comunicarte con nosotros o directo a la línea directa con la aseguradora</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-modal-content">
+            <span class="login-modal-close">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="username">Usuario:</label>
+                    <input type="text" id="username" name="username" required class="login-input">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required class="login-input">
+                </div>
+                <button type="submit" class="btn-admin">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="como-funciona.html">Cómo Funciona</a>
+            <a href="preguntas.html">Preguntas frecuentes</a>
+            <a href="Contacto.html">Contacto</a>
+            <a href="publicar.html">Ser Anfitrión</a>
+        </nav>
+        <div style="margin-top: 10px;">
+            &copy; 2025 DriveAR. Todos los derechos reservados.
+        </div>
+        <div style="margin-top: 10px;">
+            <a href="#">Política de privacidad</a> | <a href="#">Términos de uso</a>
+        </div>
+    </footer>
+
+    <button id="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="position: fixed; bottom: 20px; right: 20px; background-color: #b06d13; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script src="js/main.js"></script>
+    <script src="js/filtro.js"></script>
+</body>
+</html>
